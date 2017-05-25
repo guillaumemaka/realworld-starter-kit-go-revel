@@ -7,7 +7,10 @@ module:testrunner
 # module:jobs
 
 
-GET     /                                       App.Index
+GET     /api/user                                       UserController.GetUser
+PUT     /api/user                                       UserController.UpdateUser
+POST    /api/users                                      UserController.Register
+POST    /api/users/login                                UserController.Login
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -16,4 +19,4 @@ GET     /favicon.ico                            404
 GET     /public/*filepath                       Static.Serve("public")
 
 # Catch all
-*       /:controller/:action                    :controller.:action
+*       /:controller/:action                    404
