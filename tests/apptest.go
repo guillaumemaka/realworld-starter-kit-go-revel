@@ -1,6 +1,9 @@
 package tests
 
 import (
+	"io"
+	"net/http"
+
 	"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/lib/auth"
 	"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/models"
 	"github.com/jinzhu/gorm"
@@ -56,4 +59,13 @@ func (t *AppTest) TestConnection() {
 	t.Assert(DB != nil)
 	t.Assert(fixtures != nil)
 	t.AssertEqual(8, len(users))
+}
+
+func (t *AppTest) MakePostRequest(url string, body io.Reader, header http.Header) {
+	request := t.PostCustom(t.BaseUrl()+url, "application/json", body)
+	if header != nil {
+		request.Header = header
+	}
+
+	request.Send()
 }
