@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/guillaumemaka/realworld-starter-kit-go-revel.svg?branch=master)](https://travis-ci.org/guillaumemaka/realworld-starter-kit-go-revel)
+
 # ![RealWorld Example App](.github/logo.png)
 
 > ### Go codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld-example-apps) spec and API.
