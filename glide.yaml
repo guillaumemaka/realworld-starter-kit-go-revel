@@ -1,0 +1,24 @@
+package: github.com/guillaumemaka/realworld-starter-kit-go-revel
+import:
+- package: github.com/dgrijalva/jwt-go
+  version: ^3.0.0
+- package: github.com/jinzhu/gorm
+  version: ^1.0.0
+  subpackages:
+  - dialects/sqlite
+- package: github.com/revel/modules
+  version: ^0.15.0
+  subpackages:
+  - static/app/controllers
+  - testrunner/app
+  - testrunner/app/controllers
+- package: github.com/revel/revel
+  version: ^0.15.0
+  subpackages:
+  - cache
+  - testing
+- package: golang.org/x/crypto
+  subpackages:
+  - bcrypt
+- package: gopkg.in/testfixtures.v2
+  version: ^2.2.2
