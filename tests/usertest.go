@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/JackyChiu/realworld-starter-kit/models"
 	"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/controllers"
+	"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/models"
 )
 
 type UserControllerTest struct {
