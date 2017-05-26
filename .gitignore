@@ -6,6 +6,8 @@
 # dependencies
 /node_modules
 /bower_components
+/vendor
+/test-results
 
 # IDEs and editors
 /.idea
@@ -13,7 +15,7 @@
 .classpath
 *.launch
 .settings/
-
+.glide/
 
 #System Files
 .DS_Store

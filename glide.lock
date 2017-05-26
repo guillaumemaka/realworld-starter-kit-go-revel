@@ -1,0 +1,70 @@
+hash: 1d51c8dfc8b5f3712e53ebe72fc9ced183b7580b2c6a5f511ad6e8a07fa0c494
+updated: 2017-05-26T01:26:03.009713707-04:00
+imports:
+- name: github.com/agtorre/gocolorize
+  version: 99fea4bc9517f07eea8194702cb7076f4845b7de
+- name: github.com/bradfitz/gomemcache
+  version: 1952afaa557dc08e8e0d89eafab110fb501c1a2b
+  subpackages:
+  - memcache
+- name: github.com/dgrijalva/jwt-go
+  version: d2709f9f1f31ebcda9651b03077758c1f3a0018c
+- name: github.com/garyburd/redigo
+  version: 433969511232c397de61b1442f9fd49ec06ae9ba
+  subpackages:
+  - internal
+  - redis
+- name: github.com/jinzhu/gorm
+  version: 5174cc5c242a728b435ea2be8a2f7f998e15429b
+  subpackages:
+  - dialects/sqlite
+- name: github.com/jinzhu/inflection
+  version: 1c35d901db3da928c72a72d8458480cc9ade058f
+- name: github.com/klauspost/compress
+  version: e80ca55b53e5e6f53deed5c7842e7b7da95e1dc7
+  subpackages:
+  - flate
+  - gzip
+  - zlib
+- name: github.com/klauspost/cpuid
+  version: 09cded8978dc9e80714c4d85b0322337b0a1e5e0
+- name: github.com/mattn/go-sqlite3
+  version: cf7286f069c3ef596efcc87781a4653a2e7607bd
+- name: github.com/revel/config
+  version: 662332b741dd464a886ab0901379c02b9bc5dc30
+- name: github.com/revel/modules
+  version: 209cc8b2b7ed93a55067bc0db97707b1432e49c4
+  subpackages:
+  - static/app/controllers
+  - testrunner/app
+  - testrunner/app/controllers
+- name: github.com/revel/revel
+  version: 880eaf4227081e0e9b11a29d93b7569184cf6a1c
+  subpackages:
+  - cache
+  - testing
+- name: github.com/robfig/go-cache
+  version: 9fc39e0dbf62c034ec4e45e6120fc69433a3ec51
+- name: github.com/robfig/pathtree
+  version: 41257a1839e945fce74afd070e02bab2ea2c776a
+- name: golang.org/x/crypto
+  version: 7e9105388ebff089b3f99f0ef676ea55a6da3a7e
+  subpackages:
+  - bcrypt
+  - blowfish
+- name: golang.org/x/net
+  version: f315505cf3349909cdf013ea56690da34e96a451
+  subpackages:
+  - context
+  - websocket
+- name: golang.org/x/sys
+  version: a55a76086885b80f79961eacb876ebd8caf3868d
+  subpackages:
+  - unix
+- name: gopkg.in/fsnotify.v1
+  version: 629574ca2a5df945712d3079857300b5e4da0236
+- name: gopkg.in/testfixtures.v2
+  version: 50c22f0df6c0901e8ba96762b36bea3ef1e9b13b
+- name: gopkg.in/yaml.v2
+  version: cd8b52f8269e0feb286dfeef29f8fe4d5b397e0b
+testImports: []
