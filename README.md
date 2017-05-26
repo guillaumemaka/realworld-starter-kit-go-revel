@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/guillaumemaka/realworld-starter-kit-go-revel.svg?branch=ProjectFoundation)](https://travis-ci.org/guillaumemaka/realworld-starter-kit-go-revel)
+[![Build Status](https://travis-ci.org/guillaumemaka/realworld-starter-kit-go-revel.svg?branch=master)](https://travis-ci.org/guillaumemaka/realworld-starter-kit-go-revel)
 
 # ![RealWorld Example App](.github/logo.png)
 
