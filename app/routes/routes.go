@@ -16,6 +16,35 @@ func (_ tGormController) Init(
 }
 
 
+type tStatic struct {}
+var Static tStatic
+
+
+func (_ tStatic) Serve(
+		prefix string,
+		filepath string,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "prefix", prefix)
+	revel.Unbind(args, "filepath", filepath)
+	return revel.MainRouter.Reverse("Static.Serve", args).URL
+}
+
+func (_ tStatic) ServeModule(
+		moduleName string,
+		prefix string,
+		filepath string,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "moduleName", moduleName)
+	revel.Unbind(args, "prefix", prefix)
+	revel.Unbind(args, "filepath", filepath)
+	return revel.MainRouter.Reverse("Static.ServeModule", args).URL
+}
+
+
 type tTestRunner struct {}
 var TestRunner tTestRunner
 
@@ -55,35 +84,6 @@ func (_ tTestRunner) List(
 }
 
 
-type tStatic struct {}
-var Static tStatic
-
-
-func (_ tStatic) Serve(
-		prefix string,
-		filepath string,
-		) string {
-	args := make(map[string]string)
-	
-	revel.Unbind(args, "prefix", prefix)
-	revel.Unbind(args, "filepath", filepath)
-	return revel.MainRouter.Reverse("Static.Serve", args).URL
-}
-
-func (_ tStatic) ServeModule(
-		moduleName string,
-		prefix string,
-		filepath string,
-		) string {
-	args := make(map[string]string)
-	
-	revel.Unbind(args, "moduleName", moduleName)
-	revel.Unbind(args, "prefix", prefix)
-	revel.Unbind(args, "filepath", filepath)
-	return revel.MainRouter.Reverse("Static.ServeModule", args).URL
-}
-
-
 type tApplicationController struct {}
 var ApplicationController tApplicationController
 
@@ -100,6 +100,63 @@ func (_ tApplicationController) AddUser(
 	args := make(map[string]string)
 	
 	return revel.MainRouter.Reverse("ApplicationController.AddUser", args).URL
+}
+
+
+type tArticleController struct {}
+var ArticleController tArticleController
+
+
+func (_ tArticleController) ExtractArticle(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("ArticleController.ExtractArticle", args).URL
+}
+
+func (_ tArticleController) Index(
+		tag string,
+		favorited string,
+		author string,
+		offset int,
+		limit int,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "tag", tag)
+	revel.Unbind(args, "favorited", favorited)
+	revel.Unbind(args, "author", author)
+	revel.Unbind(args, "offset", offset)
+	revel.Unbind(args, "limit", limit)
+	return revel.MainRouter.Reverse("ArticleController.Index", args).URL
+}
+
+func (_ tArticleController) Create(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("ArticleController.Create", args).URL
+}
+
+func (_ tArticleController) Read(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("ArticleController.Read", args).URL
+}
+
+func (_ tArticleController) Update(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("ArticleController.Update", args).URL
+}
+
+func (_ tArticleController) Delete(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("ArticleController.Delete", args).URL
 }
 
 

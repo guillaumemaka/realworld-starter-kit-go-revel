@@ -20,7 +20,9 @@ var (
 	DB       *gorm.DB
 	fixtures *testfixtures.Context
 	JWT      auth.Tokener
-	users    []models.User
+	users    []*models.User
+	articles []*models.Article
+	tags     []*models.Tag
 )
 
 func (t *AppTest) Before() {
@@ -49,6 +51,16 @@ func (t *AppTest) Before() {
 	}
 
 	DB.Find(&users)
+
+	DB.Model(models.Article{}).
+		Preload("User").
+		Preload("Tags").
+		//TODO: Comments
+		Preload("Favorites").
+		Preload("Favorites.User").
+		Find(&articles)
+
+	DB.Find(&tags)
 }
 
 func (t *AppTest) After() {
@@ -59,6 +71,8 @@ func (t *AppTest) TestConnection() {
 	t.Assert(DB != nil)
 	t.Assert(fixtures != nil)
 	t.AssertEqual(8, len(users))
+	t.AssertEqual(5, len(articles))
+	t.AssertEqual(1, len(tags))
 }
 
 func (t *AppTest) MakePostRequest(url string, body io.Reader, header http.Header) {

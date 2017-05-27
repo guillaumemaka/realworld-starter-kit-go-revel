@@ -5,6 +5,8 @@ import (
 )
 
 type Datastorer interface {
+	ArticleStorer
+	TagStorer
 	UserStorer
 	InitSchema()
 }
@@ -23,6 +25,9 @@ func NewDB(dialect, dbName string) (*DB, error) {
 
 func (db *DB) InitSchema() {
 	db.AutoMigrate(&User{})
+	db.AutoMigrate(&Article{})
+	db.AutoMigrate(&Favorite{})
+	db.AutoMigrate(&Tag{})
 }
 
 type ValidationErrors map[string][]string

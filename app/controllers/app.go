@@ -1,12 +1,9 @@
 package controllers
 
 import (
-	"time"
-
 	"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/lib/auth"
 	"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/models"
 	"github.com/revel/revel"
-	"github.com/revel/revel/cache"
 )
 
 type ApplicationController struct {
@@ -30,38 +27,32 @@ func (c *ApplicationController) Init() revel.Result {
 }
 
 func (c *ApplicationController) AddUser() revel.Result {
-	if user := c.currentUser(); user != nil {
-		c.Args[currentUserKey] = user
+	user, err := c.currentUser()
+	if err != nil {
+		return c.NotFound(err.Error())
 	}
+	c.Args[currentUserKey] = user
 	return nil
 }
 
-func (c *ApplicationController) currentUser() *models.User {
-	if c.Args[currentUserKey] != nil {
-		return c.Args[currentUserKey].(*models.User)
-	}
+func (c *ApplicationController) currentUser() (*models.User, error) {
+	var user = &models.User{}
 
-	claims, err := c.JWT.CheckRequest(c.Request)
-	if err != nil {
-		revel.INFO.Println("JWT CheckRequest", err)
-	}
+	claims, _ := c.JWT.CheckRequest(c.Request)
 
 	if claims != nil {
 		c.Args[claimKey] = claims
-		var user *models.User
 
-		if err := cache.Get(claims.Username, &user); err != nil {
-			user, err := c.DB.FindUserByUsername(claims.Username)
-			if err != nil {
-				revel.INFO.Println("currentUser", err)
-			} else {
-				go cache.Set(claims.Username, user, 24*time.Hour)
-			}
+		user, err := c.DB.FindUserByUsername(claims.Username)
+		if err != nil {
+			revel.INFO.Println("currentUser", err)
+			return user, err
 		}
 
-		return user
+		return user, nil
 	}
-	return nil
+
+	return user, nil
 }
 
 func (err *errorJSON) Build(errMap map[string]*revel.ValidationError) *errorJSON {

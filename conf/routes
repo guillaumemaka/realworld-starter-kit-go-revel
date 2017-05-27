@@ -7,11 +7,11 @@ module:testrunner
 # module:jobs
 
 # Articles Routes
-GET         /api/articles                               404
-POST        /api/articles                               404
-GET         /api/articles/:slug                         404
-PUT         /api/articles/:slug                         404
-DELETE      /api/articles/:slug                         404
+GET         /api/articles                               ArticleController.Index
+POST        /api/articles                               ArticleController.Create
+GET         /api/articles/:slug                         ArticleController.Read
+PUT         /api/articles/:slug                         ArticleController.Update
+DELETE      /api/articles/:slug                         ArticleController.Delete
 POST        /api/articles/:slug/favorite                404
 DELETE      /api/articles/:slug/favorite                404
 
