@@ -14,6 +14,10 @@ type ApplicationController struct {
 	JWT auth.Tokener
 }
 
+type errorJSON struct {
+	Errors models.ValidationErrors `json:"errors"`
+}
+
 const (
 	currentUserKey    = "current_user"
 	fetchedArticleKey = "article"
@@ -58,4 +62,12 @@ func (c *ApplicationController) currentUser() *models.User {
 		return user
 	}
 	return nil
+}
+
+func (err *errorJSON) Build(errMap map[string]*revel.ValidationError) *errorJSON {
+	err.Errors = models.ValidationErrors{}
+	for _, validationError := range errMap {
+		err.Errors[validationError.Key] = []string{validationError.Message}
+	}
+	return err
 }

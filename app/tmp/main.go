@@ -160,9 +160,15 @@ func main() {
 		})
 	
 	revel.DefaultValidationKeys = map[string]map[int]string{ 
+		"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/controllers.UserController.Login": { 
+			93: "bodyUser.Email",
+			94: "bodyUser.Email",
+			95: "bodyUser.Password",
+		},
 	}
 	testing.TestSuites = []interface{}{ 
 		(*tests.AppTest)(nil),
+		(*tests.UserControllerTest)(nil),
 	}
 
 	revel.Run(*port)

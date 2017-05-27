@@ -8,7 +8,7 @@ import (
 )
 
 var requireAuth = map[string][]string{
-	"UserController": []string{"PUT"},
+	"UserController": []string{"GET", "PUT"},
 }
 
 func authorize(c *revel.Controller) revel.Result {
