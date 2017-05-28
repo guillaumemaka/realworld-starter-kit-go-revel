@@ -110,39 +110,6 @@ func (_ tApplicationController) ExtractArticle(
 }
 
 
-type tUserController struct {}
-var UserController tUserController
-
-
-func (_ tUserController) GetUser(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("UserController.GetUser", args).URL
-}
-
-func (_ tUserController) Register(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("UserController.Register", args).URL
-}
-
-func (_ tUserController) Login(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("UserController.Login", args).URL
-}
-
-func (_ tUserController) UpdateUser(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("UserController.UpdateUser", args).URL
-}
-
-
 type tArticleController struct {}
 var ArticleController tArticleController
 
@@ -209,6 +176,39 @@ func (_ tFavoriteController) Delete(
 	args := make(map[string]string)
 	
 	return revel.MainRouter.Reverse("FavoriteController.Delete", args).URL
+}
+
+
+type tUserController struct {}
+var UserController tUserController
+
+
+func (_ tUserController) GetUser(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("UserController.GetUser", args).URL
+}
+
+func (_ tUserController) Register(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("UserController.Register", args).URL
+}
+
+func (_ tUserController) Login(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("UserController.Login", args).URL
+}
+
+func (_ tUserController) UpdateUser(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("UserController.UpdateUser", args).URL
 }
 
 

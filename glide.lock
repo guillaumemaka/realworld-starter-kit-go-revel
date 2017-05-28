@@ -1,19 +1,10 @@
 hash: 1d51c8dfc8b5f3712e53ebe72fc9ced183b7580b2c6a5f511ad6e8a07fa0c494
-updated: 2017-05-26T01:26:03.009713707-04:00
+updated: 2017-05-27T20:56:13.672378674-04:00
 imports:
 - name: github.com/agtorre/gocolorize
   version: 99fea4bc9517f07eea8194702cb7076f4845b7de
-- name: github.com/bradfitz/gomemcache
-  version: 1952afaa557dc08e8e0d89eafab110fb501c1a2b
-  subpackages:
-  - memcache
 - name: github.com/dgrijalva/jwt-go
   version: d2709f9f1f31ebcda9651b03077758c1f3a0018c
-- name: github.com/garyburd/redigo
-  version: 433969511232c397de61b1442f9fd49ec06ae9ba
-  subpackages:
-  - internal
-  - redis
 - name: github.com/jinzhu/gorm
   version: 5174cc5c242a728b435ea2be8a2f7f998e15429b
   subpackages:
@@ -28,6 +19,8 @@ imports:
   - zlib
 - name: github.com/klauspost/cpuid
   version: 09cded8978dc9e80714c4d85b0322337b0a1e5e0
+- name: github.com/Machiel/slugify
+  version: 2f1bd9e4c7e7c5586e55bf9ee8deae24215f59ea
 - name: github.com/mattn/go-sqlite3
   version: cf7286f069c3ef596efcc87781a4653a2e7607bd
 - name: github.com/revel/config
@@ -43,8 +36,6 @@ imports:
   subpackages:
   - cache
   - testing
-- name: github.com/robfig/go-cache
-  version: 9fc39e0dbf62c034ec4e45e6120fc69433a3ec51
 - name: github.com/robfig/pathtree
   version: 41257a1839e945fce74afd070e02bab2ea2c776a
 - name: golang.org/x/crypto
