@@ -45,10 +45,6 @@ type testLogin struct {
 	body     UserLoginBody
 }
 
-type ErrorJSON struct {
-	Errors map[string][]string `json:"errors"`
-}
-
 func (t *UserControllerTest) TestLoginSuccesFully() {
 	bodyUser := UserLoginBody{
 		UserLogin{

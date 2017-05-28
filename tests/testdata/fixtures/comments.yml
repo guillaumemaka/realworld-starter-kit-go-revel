@@ -1,0 +1,119 @@
+- 
+  id: 1
+  body: Comment 1 of Article 1
+  user_id: 2
+  article_id: 1
+  created_at: RAW=date('now','start of year','+1 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+1 months','weekday 2')
+
+- 
+  id: 2
+  body: Comment 2 of Article 1
+  user_id: 3
+  article_id: 1
+  created_at: RAW=date('now','start of year','+2 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+2 months','weekday 2')
+
+- 
+  id: 3
+  body: Comment 3 of Article 1
+  user_id: 4
+  article_id: 1
+  created_at: RAW=date('now','start of year','+3 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+3 months','weekday 2')
+
+- 
+  id: 4
+  body: Comment 1 of Article 2
+  user_id: 3
+  article_id: 2
+  created_at: RAW=date('now','start of year','+1 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+1 months','weekday 2')
+
+- 
+  id: 5
+  body: Comment 2 of Article 2
+  user_id: 4
+  article_id: 2
+  created_at: RAW=date('now','start of year','+2 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+2 months','weekday 2')
+
+- 
+  id: 6
+  body: Comment 3 of Article 2
+  user_id: 5
+  article_id: 2
+  created_at: RAW=date('now','start of year','+3 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+3 months','weekday 2')
+
+- 
+  id: 7
+  body: Comment 1 of Article 3
+  user_id: 6
+  article_id: 3
+  created_at: RAW=date('now','start of year','+1 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+1 months','weekday 2')
+
+- 
+  id: 8
+  body: Comment 2 of Article 3
+  user_id: 7
+  article_id: 3
+  created_at: RAW=date('now','start of year','+2 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+2 months','weekday 2')
+
+- 
+  id: 9
+  body: Comment 3 of Article 3
+  user_id: 8
+  article_id: 3
+  created_at: RAW=date('now','start of year','+3 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+3 months','weekday 2')
+
+- 
+  id: 10
+  body: Comment 1 of Article 4
+  user_id: 1
+  article_id: 4
+  created_at: RAW=date('now','start of year','+1 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+1 months','weekday 2')
+
+- 
+  id: 11
+  body: Comment 2 of Article 4
+  user_id: 2
+  article_id: 4
+  created_at: RAW=date('now','start of year','+2 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+2 months','weekday 2')
+
+- 
+  id: 12
+  body: Comment 3 of Article 4
+  user_id: 3
+  article_id: 4
+  created_at: RAW=date('now','start of year','+3 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+3 months','weekday 2')
+
+- 
+  id: 13
+  body: Comment 1 of Article 5
+  user_id: 4
+  article_id: 5
+  created_at: RAW=date('now','start of year','+1 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+1 months','weekday 2')
+
+- 
+  id: 14
+  body: Comment 2 of Article 5
+  user_id: 5
+  article_id: 5
+  created_at: RAW=date('now','start of year','+2 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+2 months','weekday 2')
+
+- 
+  id: 15
+  body: Comment 3 of Article 1
+  user_id: 6
+  article_id: 5
+  created_at: RAW=date('now','start of year','+3 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+3 months','weekday 2')

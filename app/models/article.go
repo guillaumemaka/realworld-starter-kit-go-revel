@@ -45,6 +45,7 @@ type Article struct {
 	Tags           []Tag `gorm:"many2many:taggings;"`
 	Favorites      []Favorite
 	FavoritesCount int
+	Comments       []Comment
 	CreatedAt      time.Time
 	UpdatedAt      time.Time
 }
