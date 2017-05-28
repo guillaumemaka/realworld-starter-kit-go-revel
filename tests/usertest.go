@@ -49,7 +49,7 @@ type ErrorJSON struct {
 	Errors map[string][]string `json:"errors"`
 }
 
-func (t *AppTest) TestLoginSuccesFully() {
+func (t *UserControllerTest) TestLoginSuccesFully() {
 	bodyUser := UserLoginBody{
 		UserLogin{
 			Email:    "user1@example.com",
@@ -70,7 +70,7 @@ func (t *AppTest) TestLoginSuccesFully() {
 	t.AssertEqual(bodyUser.User.Email, UserJSON.User.Email)
 }
 
-func (t *AppTest) TestLoginFail() {
+func (t *UserControllerTest) TestLoginFail() {
 	tests := []testLogin{
 		testLogin{
 			errorKey: "email",
@@ -124,7 +124,7 @@ func (t *AppTest) TestLoginFail() {
 	}
 }
 
-func (t *AppTest) TestRegistrationSuccesFully() {
+func (t *UserControllerTest) TestRegistrationSuccesFully() {
 	bodyUser := UserRegistrationBody{
 		UserRegister{
 			Username: "newuser",
@@ -146,7 +146,7 @@ func (t *AppTest) TestRegistrationSuccesFully() {
 	t.AssertEqual(bodyUser.User.Email, UserJSON.User.Email)
 }
 
-func (t *AppTest) TestRegistrationFail() {
+func (t *UserControllerTest) TestRegistrationFail() {
 	tests := []testRegistration{
 		testRegistration{
 			errorKey: "username",
@@ -218,7 +218,7 @@ func (t *UserControllerTest) TestGetCurrentUserUnauthorized() {
 	t.AssertStatus(401)
 }
 
-func (t *UserControllerTest) TestGetCurrentSuccess() {
+func (t *UserControllerTest) TestGetCurrentUserSuccess() {
 	request := t.GetCustom(t.BaseUrl() + "/api/user")
 
 	request.Header = http.Header{
@@ -227,4 +227,15 @@ func (t *UserControllerTest) TestGetCurrentSuccess() {
 	}
 	request.Send()
 	t.AssertOk()
+}
+
+func (t *UserControllerTest) TestGetCurrentUserNotFound() {
+	request := t.GetCustom(t.BaseUrl() + "/api/user")
+
+	request.Header = http.Header{
+		"Accept":        []string{"application/json"},
+		"Authorization": []string{fmt.Sprintf("Token %v", JWT.NewToken("not-found-user"))},
+	}
+	request.Send()
+	t.AssertNotFound()
 }

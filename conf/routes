@@ -6,17 +6,26 @@
 module:testrunner
 # module:jobs
 
+# Articles Routes
+GET         /api/articles                               ArticleController.Index
+POST        /api/articles                               ArticleController.Create
+GET         /api/articles/:slug                         ArticleController.Read
+PUT         /api/articles/:slug                         ArticleController.Update
+DELETE      /api/articles/:slug                         ArticleController.Delete
+POST        /api/articles/:slug/favorite                FavoriteController.Post
+DELETE      /api/articles/:slug/favorite                FavoriteController.Delete
 
-GET     /api/user                                       UserController.GetUser
-PUT     /api/user                                       UserController.UpdateUser
-POST    /api/users                                      UserController.Register
-POST    /api/users/login                                UserController.Login
+# Auth Routes
+GET         /api/user                                   UserController.GetUser
+PUT         /api/user                                   UserController.UpdateUser
+POST        /api/users                                  UserController.Register
+POST        /api/users/login                            UserController.Login
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET         /favicon.ico                                404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/*filepath                       Static.Serve("public")
+GET         /public/*filepath                           Static.Serve("public")
 
 # Catch all
-*       /:controller/:action                    404
+*           /:controller/:action                        404

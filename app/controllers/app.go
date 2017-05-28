@@ -1,12 +1,13 @@
 package controllers
 
 import (
+	"net/http"
+	"reflect"
 	"time"
 
 	"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/lib/auth"
 	"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/models"
 	"github.com/revel/revel"
-	"github.com/revel/revel/cache"
 )
 
 type ApplicationController struct {
@@ -30,38 +31,46 @@ func (c *ApplicationController) Init() revel.Result {
 }
 
 func (c *ApplicationController) AddUser() revel.Result {
-	if user := c.currentUser(); user != nil {
-		c.Args[currentUserKey] = user
+	user, err := c.currentUser()
+	if err != nil {
+		return c.NotFound(err.Error())
 	}
+	c.Args[currentUserKey] = user
 	return nil
 }
 
-func (c *ApplicationController) currentUser() *models.User {
-	if c.Args[currentUserKey] != nil {
-		return c.Args[currentUserKey].(*models.User)
+func (c *ApplicationController) ExtractArticle() revel.Result {
+	if slug := c.Params.Route.Get("slug"); slug != "" {
+		a, err := c.DB.GetArticle(slug)
+		if err != nil {
+			c.Response.Status = http.StatusNotFound
+			return c.RenderText(err.Error())
+		}
+
+		c.Args[fetchedArticleKey] = a
 	}
 
-	claims, err := c.JWT.CheckRequest(c.Request)
-	if err != nil {
-		revel.INFO.Println("JWT CheckRequest", err)
-	}
+	return nil
+}
+
+func (c *ApplicationController) currentUser() (*models.User, error) {
+	var user = &models.User{}
+
+	claims, _ := c.JWT.CheckRequest(c.Request)
 
 	if claims != nil {
 		c.Args[claimKey] = claims
-		var user *models.User
 
-		if err := cache.Get(claims.Username, &user); err != nil {
-			user, err := c.DB.FindUserByUsername(claims.Username)
-			if err != nil {
-				revel.INFO.Println("currentUser", err)
-			} else {
-				go cache.Set(claims.Username, user, 24*time.Hour)
-			}
+		user, err := c.DB.FindUserByUsername(claims.Username)
+		if err != nil {
+			revel.INFO.Println("currentUser", err)
+			return user, err
 		}
 
-		return user
+		return user, nil
 	}
-	return nil
+
+	return user, nil
 }
 
 func (err *errorJSON) Build(errMap map[string]*revel.ValidationError) *errorJSON {
@@ -70,4 +79,37 @@ func (err *errorJSON) Build(errMap map[string]*revel.ValidationError) *errorJSON
 		err.Errors[validationError.Key] = []string{validationError.Message}
 	}
 	return err
+}
+
+func (c *ApplicationController) buildArticleJSON(a *models.Article, u *models.User) Article {
+	following := false
+	favorited := false
+	//TODO: Remove reflection
+	if !reflect.DeepEqual(u, &models.User{}) {
+		following = c.DB.IsFollowing(u.ID, a.User.ID)
+		favorited = c.DB.IsFavorited(u.ID, a.ID)
+	}
+
+	article := Article{
+		Slug:           a.Slug,
+		Title:          a.Title,
+		Description:    a.Description,
+		Body:           a.Body,
+		Favorited:      favorited,
+		FavoritesCount: a.FavoritesCount,
+		CreatedAt:      a.CreatedAt.Format(time.RFC3339),
+		UpdatedAt:      a.UpdatedAt.Format(time.RFC3339),
+		Author: Author{
+			Username:  a.User.Username,
+			Bio:       a.User.Bio,
+			Image:     a.User.Image,
+			Following: following,
+		},
+	}
+
+	for _, t := range a.Tags {
+		article.TagList = append(article.TagList, t.Name)
+	}
+
+	return article
 }

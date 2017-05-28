@@ -4,21 +4,22 @@ import (
 	"net/http"
 	"reflect"
 
+	"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/models"
 	"github.com/revel/revel"
 )
 
 var requireAuth = map[string][]string{
-	"UserController": []string{"GET", "PUT"},
+	"UserController":     []string{"GET", "PUT"},
+	"ArticleController":  []string{"POST", "PUT", "DELETE"},
+	"FavoriteController": []string{"POST", "DELETE"},
 }
 
 func authorize(c *revel.Controller) revel.Result {
 	if methods, ok := requireAuth[c.Name]; ok {
 		if HasElem(methods, c.Request.Method) {
-			if c.Args[claimKey] == nil {
-				if c.Args[currentUserKey] == nil {
-					c.Response.Status = http.StatusUnauthorized
-					return c.RenderText(http.StatusText(http.StatusUnauthorized))
-				}
+			if (reflect.DeepEqual(c.Args[currentUserKey].(*models.User), &models.User{})) {
+				c.Response.Status = http.StatusUnauthorized
+				return c.RenderText(http.StatusText(http.StatusUnauthorized))
 			}
 		}
 	}
@@ -48,5 +49,8 @@ func init() {
 	revel.InterceptMethod((*GormController).Init, revel.BEFORE)
 	revel.InterceptMethod((*ApplicationController).Init, revel.BEFORE)
 	revel.InterceptMethod((*ApplicationController).AddUser, revel.BEFORE)
+	revel.InterceptMethod((*ApplicationController).ExtractArticle, revel.BEFORE)
 	revel.InterceptFunc(authorize, revel.BEFORE, &UserController{})
+	revel.InterceptFunc(authorize, revel.BEFORE, &ArticleController{})
+	revel.InterceptFunc(authorize, revel.BEFORE, &FavoriteController{})
 }

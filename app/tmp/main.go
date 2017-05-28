@@ -123,6 +123,13 @@ func main() {
 				RenderArgNames: map[int][]string{ 
 				},
 			},
+			&revel.MethodType{
+				Name: "ExtractArticle",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
 			
 		})
 	
@@ -159,6 +166,70 @@ func main() {
 			
 		})
 	
+	revel.RegisterController((*controllers.ArticleController)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "Index",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "tag", Type: reflect.TypeOf((*string)(nil)) },
+					&revel.MethodArg{Name: "favorited", Type: reflect.TypeOf((*string)(nil)) },
+					&revel.MethodArg{Name: "author", Type: reflect.TypeOf((*string)(nil)) },
+					&revel.MethodArg{Name: "offset", Type: reflect.TypeOf((*int)(nil)) },
+					&revel.MethodArg{Name: "limit", Type: reflect.TypeOf((*int)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Create",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Read",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Update",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Delete",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			
+		})
+	
+	revel.RegisterController((*controllers.FavoriteController)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "Post",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Delete",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			
+		})
+	
 	revel.DefaultValidationKeys = map[string]map[int]string{ 
 		"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/controllers.UserController.Login": { 
 			93: "bodyUser.Email",
@@ -168,6 +239,8 @@ func main() {
 	}
 	testing.TestSuites = []interface{}{ 
 		(*tests.AppTest)(nil),
+		(*tests.ArticleController)(nil),
+		(*tests.FavoriteControllerTest)(nil),
 		(*tests.UserControllerTest)(nil),
 	}
 

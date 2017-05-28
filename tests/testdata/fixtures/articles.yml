@@ -1,0 +1,54 @@
+-
+  id: 1
+  slug: article-title-1
+  title: Article Title 1
+  description: Article Description 1
+  body: Article Body 1
+  user_id: 1
+  favorites_count: 3
+  created_at: RAW=date('now','start of year','+1 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+1 months','weekday 2')
+
+-
+  id: 2
+  slug: article-title-2
+  title: Article Title 2
+  description: Article Description 2
+  body: Article Body 2
+  user_id: 2
+  favorites_count: 3
+  created_at: RAW=date('now','start of year','+2 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+2 months','weekday 2')
+
+-
+  id: 3
+  slug: article-title-3
+  title: Article Title 3
+  description: Article Description 3
+  body: Article Body 3
+  user_id: 3
+  favorites_count: 3
+  created_at: RAW=date('now','start of year','+3 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+3 months','weekday 2')
+
+-
+  id: 4
+  slug: article-title-4
+  title: Article Title 4
+  description: Article Description 4
+  body: Article Body 4
+  user_id: 4
+  favorites_count: 3
+  created_at: RAW=date('now','start of year','+4 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+4 months','weekday 2')
+
+-
+  id: 5
+  slug: article-title-5
+  title: Article Title 5
+  description: Article Description 5
+  body: Article Body 5
+  user_id: 5
+  favorites_count: 3
+  created_at: RAW=date('now','start of year','+5 months','weekday 2')
+  updated_at: RAW=date('now','start of year','+5 months','weekday 2')
