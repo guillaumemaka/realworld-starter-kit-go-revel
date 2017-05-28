@@ -9,8 +9,9 @@ import (
 )
 
 var requireAuth = map[string][]string{
-	"UserController":    []string{"GET", "PUT"},
-	"ArticleController": []string{"POST", "PUT", "DELETE"},
+	"UserController":     []string{"GET", "PUT"},
+	"ArticleController":  []string{"POST", "PUT", "DELETE"},
+	"FavoriteController": []string{"POST", "DELETE"},
 }
 
 func authorize(c *revel.Controller) revel.Result {
@@ -48,7 +49,8 @@ func init() {
 	revel.InterceptMethod((*GormController).Init, revel.BEFORE)
 	revel.InterceptMethod((*ApplicationController).Init, revel.BEFORE)
 	revel.InterceptMethod((*ApplicationController).AddUser, revel.BEFORE)
+	revel.InterceptMethod((*ApplicationController).ExtractArticle, revel.BEFORE)
 	revel.InterceptFunc(authorize, revel.BEFORE, &UserController{})
 	revel.InterceptFunc(authorize, revel.BEFORE, &ArticleController{})
-	revel.InterceptMethod((*ArticleController).ExtractArticle, revel.BEFORE)
+	revel.InterceptFunc(authorize, revel.BEFORE, &FavoriteController{})
 }

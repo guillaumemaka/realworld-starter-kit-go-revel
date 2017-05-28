@@ -9,9 +9,9 @@ import (
 	controllers "github.com/guillaumemaka/realworld-starter-kit-go-revel/app/controllers"
 	tests "github.com/guillaumemaka/realworld-starter-kit-go-revel/tests"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	controllers0 "github.com/revel/modules/static/app/controllers"
+	controllers1 "github.com/revel/modules/static/app/controllers"
 	_ "github.com/revel/modules/testrunner/app"
-	controllers1 "github.com/revel/modules/testrunner/app/controllers"
+	controllers0 "github.com/revel/modules/testrunner/app/controllers"
 	"github.com/revel/revel/testing"
 )
 
@@ -42,31 +42,7 @@ func main() {
 			
 		})
 	
-	revel.RegisterController((*controllers0.Static)(nil),
-		[]*revel.MethodType{
-			&revel.MethodType{
-				Name: "Serve",
-				Args: []*revel.MethodArg{ 
-					&revel.MethodArg{Name: "prefix", Type: reflect.TypeOf((*string)(nil)) },
-					&revel.MethodArg{Name: "filepath", Type: reflect.TypeOf((*string)(nil)) },
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			&revel.MethodType{
-				Name: "ServeModule",
-				Args: []*revel.MethodArg{ 
-					&revel.MethodArg{Name: "moduleName", Type: reflect.TypeOf((*string)(nil)) },
-					&revel.MethodArg{Name: "prefix", Type: reflect.TypeOf((*string)(nil)) },
-					&revel.MethodArg{Name: "filepath", Type: reflect.TypeOf((*string)(nil)) },
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			
-		})
-	
-	revel.RegisterController((*controllers1.TestRunner)(nil),
+	revel.RegisterController((*controllers0.TestRunner)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
 				Name: "Index",
@@ -107,6 +83,30 @@ func main() {
 			
 		})
 	
+	revel.RegisterController((*controllers1.Static)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "Serve",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "prefix", Type: reflect.TypeOf((*string)(nil)) },
+					&revel.MethodArg{Name: "filepath", Type: reflect.TypeOf((*string)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "ServeModule",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "moduleName", Type: reflect.TypeOf((*string)(nil)) },
+					&revel.MethodArg{Name: "prefix", Type: reflect.TypeOf((*string)(nil)) },
+					&revel.MethodArg{Name: "filepath", Type: reflect.TypeOf((*string)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			
+		})
+	
 	revel.RegisterController((*controllers.ApplicationController)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
@@ -123,11 +123,6 @@ func main() {
 				RenderArgNames: map[int][]string{ 
 				},
 			},
-			
-		})
-	
-	revel.RegisterController((*controllers.ArticleController)(nil),
-		[]*revel.MethodType{
 			&revel.MethodType{
 				Name: "ExtractArticle",
 				Args: []*revel.MethodArg{ 
@@ -135,6 +130,44 @@ func main() {
 				RenderArgNames: map[int][]string{ 
 				},
 			},
+			
+		})
+	
+	revel.RegisterController((*controllers.UserController)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "GetUser",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Register",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Login",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "UpdateUser",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			
+		})
+	
+	revel.RegisterController((*controllers.ArticleController)(nil),
+		[]*revel.MethodType{
 			&revel.MethodType{
 				Name: "Index",
 				Args: []*revel.MethodArg{ 
@@ -178,31 +211,17 @@ func main() {
 			
 		})
 	
-	revel.RegisterController((*controllers.UserController)(nil),
+	revel.RegisterController((*controllers.FavoriteController)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
-				Name: "GetUser",
+				Name: "Post",
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
 				},
 			},
 			&revel.MethodType{
-				Name: "Register",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			&revel.MethodType{
-				Name: "Login",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			&revel.MethodType{
-				Name: "UpdateUser",
+				Name: "Delete",
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
@@ -221,6 +240,7 @@ func main() {
 	testing.TestSuites = []interface{}{ 
 		(*tests.AppTest)(nil),
 		(*tests.ArticleController)(nil),
+		(*tests.FavoriteControllerTest)(nil),
 		(*tests.UserControllerTest)(nil),
 	}
 

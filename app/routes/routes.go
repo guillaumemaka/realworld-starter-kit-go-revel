@@ -16,35 +16,6 @@ func (_ tGormController) Init(
 }
 
 
-type tStatic struct {}
-var Static tStatic
-
-
-func (_ tStatic) Serve(
-		prefix string,
-		filepath string,
-		) string {
-	args := make(map[string]string)
-	
-	revel.Unbind(args, "prefix", prefix)
-	revel.Unbind(args, "filepath", filepath)
-	return revel.MainRouter.Reverse("Static.Serve", args).URL
-}
-
-func (_ tStatic) ServeModule(
-		moduleName string,
-		prefix string,
-		filepath string,
-		) string {
-	args := make(map[string]string)
-	
-	revel.Unbind(args, "moduleName", moduleName)
-	revel.Unbind(args, "prefix", prefix)
-	revel.Unbind(args, "filepath", filepath)
-	return revel.MainRouter.Reverse("Static.ServeModule", args).URL
-}
-
-
 type tTestRunner struct {}
 var TestRunner tTestRunner
 
@@ -84,6 +55,35 @@ func (_ tTestRunner) List(
 }
 
 
+type tStatic struct {}
+var Static tStatic
+
+
+func (_ tStatic) Serve(
+		prefix string,
+		filepath string,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "prefix", prefix)
+	revel.Unbind(args, "filepath", filepath)
+	return revel.MainRouter.Reverse("Static.Serve", args).URL
+}
+
+func (_ tStatic) ServeModule(
+		moduleName string,
+		prefix string,
+		filepath string,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "moduleName", moduleName)
+	revel.Unbind(args, "prefix", prefix)
+	revel.Unbind(args, "filepath", filepath)
+	return revel.MainRouter.Reverse("Static.ServeModule", args).URL
+}
+
+
 type tApplicationController struct {}
 var ApplicationController tApplicationController
 
@@ -102,17 +102,50 @@ func (_ tApplicationController) AddUser(
 	return revel.MainRouter.Reverse("ApplicationController.AddUser", args).URL
 }
 
+func (_ tApplicationController) ExtractArticle(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("ApplicationController.ExtractArticle", args).URL
+}
+
+
+type tUserController struct {}
+var UserController tUserController
+
+
+func (_ tUserController) GetUser(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("UserController.GetUser", args).URL
+}
+
+func (_ tUserController) Register(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("UserController.Register", args).URL
+}
+
+func (_ tUserController) Login(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("UserController.Login", args).URL
+}
+
+func (_ tUserController) UpdateUser(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("UserController.UpdateUser", args).URL
+}
+
 
 type tArticleController struct {}
 var ArticleController tArticleController
 
-
-func (_ tArticleController) ExtractArticle(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("ArticleController.ExtractArticle", args).URL
-}
 
 func (_ tArticleController) Index(
 		tag string,
@@ -160,36 +193,22 @@ func (_ tArticleController) Delete(
 }
 
 
-type tUserController struct {}
-var UserController tUserController
+type tFavoriteController struct {}
+var FavoriteController tFavoriteController
 
 
-func (_ tUserController) GetUser(
+func (_ tFavoriteController) Post(
 		) string {
 	args := make(map[string]string)
 	
-	return revel.MainRouter.Reverse("UserController.GetUser", args).URL
+	return revel.MainRouter.Reverse("FavoriteController.Post", args).URL
 }
 
-func (_ tUserController) Register(
+func (_ tFavoriteController) Delete(
 		) string {
 	args := make(map[string]string)
 	
-	return revel.MainRouter.Reverse("UserController.Register", args).URL
-}
-
-func (_ tUserController) Login(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("UserController.Login", args).URL
-}
-
-func (_ tUserController) UpdateUser(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("UserController.UpdateUser", args).URL
+	return revel.MainRouter.Reverse("FavoriteController.Delete", args).URL
 }
 
 

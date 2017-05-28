@@ -12,8 +12,8 @@ POST        /api/articles                               ArticleController.Create
 GET         /api/articles/:slug                         ArticleController.Read
 PUT         /api/articles/:slug                         ArticleController.Update
 DELETE      /api/articles/:slug                         ArticleController.Delete
-POST        /api/articles/:slug/favorite                404
-DELETE      /api/articles/:slug/favorite                404
+POST        /api/articles/:slug/favorite                FavoriteController.Post
+DELETE      /api/articles/:slug/favorite                FavoriteController.Delete
 
 # Auth Routes
 GET         /api/user                                   UserController.GetUser
