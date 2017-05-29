@@ -16,6 +16,10 @@ type AppTest struct {
 	testing.TestSuite
 }
 
+type ErrorJSON struct {
+	Errors map[string][]string `json:"errors"`
+}
+
 var (
 	DB       *gorm.DB
 	fixtures *testfixtures.Context
@@ -55,7 +59,8 @@ func (t *AppTest) Before() {
 	DB.Model(models.Article{}).
 		Preload("User").
 		Preload("Tags").
-		//TODO: Comments
+		Preload("Comments").
+		Preload("Comments.User").
 		Preload("Favorites").
 		Preload("Favorites.User").
 		Find(&articles)

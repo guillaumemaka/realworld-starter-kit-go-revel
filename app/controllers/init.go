@@ -12,6 +12,7 @@ var requireAuth = map[string][]string{
 	"UserController":     []string{"GET", "PUT"},
 	"ArticleController":  []string{"POST", "PUT", "DELETE"},
 	"FavoriteController": []string{"POST", "DELETE"},
+	"CommentController":  []string{"POST", "DELETE"},
 }
 
 func authorize(c *revel.Controller) revel.Result {
@@ -53,4 +54,5 @@ func init() {
 	revel.InterceptFunc(authorize, revel.BEFORE, &UserController{})
 	revel.InterceptFunc(authorize, revel.BEFORE, &ArticleController{})
 	revel.InterceptFunc(authorize, revel.BEFORE, &FavoriteController{})
+	revel.InterceptFunc(authorize, revel.BEFORE, &CommentController{})
 }
