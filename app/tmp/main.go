@@ -133,6 +133,70 @@ func main() {
 			
 		})
 	
+	revel.RegisterController((*controllers.FavoriteController)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "Post",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Delete",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			
+		})
+	
+	revel.RegisterController((*controllers.TagController)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "Index",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			
+		})
+	
+	revel.RegisterController((*controllers.UserController)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "GetUser",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Register",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Login",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "UpdateUser",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			
+		})
+	
 	revel.RegisterController((*controllers.ArticleController)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
@@ -206,58 +270,6 @@ func main() {
 			
 		})
 	
-	revel.RegisterController((*controllers.FavoriteController)(nil),
-		[]*revel.MethodType{
-			&revel.MethodType{
-				Name: "Post",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			&revel.MethodType{
-				Name: "Delete",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			
-		})
-	
-	revel.RegisterController((*controllers.UserController)(nil),
-		[]*revel.MethodType{
-			&revel.MethodType{
-				Name: "GetUser",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			&revel.MethodType{
-				Name: "Register",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			&revel.MethodType{
-				Name: "Login",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			&revel.MethodType{
-				Name: "UpdateUser",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			
-		})
-	
 	revel.DefaultValidationKeys = map[string]map[int]string{ 
 		"github.com/guillaumemaka/realworld-starter-kit-go-revel/app/controllers.UserController.Login": { 
 			93: "bodyUser.Email",
@@ -267,10 +279,11 @@ func main() {
 	}
 	testing.TestSuites = []interface{}{ 
 		(*tests.AppTest)(nil),
-		(*tests.ArticleController)(nil),
 		(*tests.CommentController)(nil),
 		(*tests.FavoriteControllerTest)(nil),
+		(*tests.TagControllerTest)(nil),
 		(*tests.UserControllerTest)(nil),
+		(*tests.ArticleController)(nil),
 	}
 
 	revel.Run(*port)

@@ -17,6 +17,7 @@ POST        /api/articles/:slug/comments                CommentController.Create
 DELETE      /api/articles/:slug/comments/:id            CommentController.Delete
 POST        /api/articles/:slug/favorite                FavoriteController.Post
 DELETE      /api/articles/:slug/favorite                FavoriteController.Delete
+GET         /api/tags                                   TagController.Index
 
 # Auth Routes
 GET         /api/user                                   UserController.GetUser

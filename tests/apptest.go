@@ -77,7 +77,7 @@ func (t *AppTest) TestConnection() {
 	t.Assert(fixtures != nil)
 	t.AssertEqual(8, len(users))
 	t.AssertEqual(5, len(articles))
-	t.AssertEqual(1, len(tags))
+	t.AssertEqual(3, len(tags))
 }
 
 func (t *AppTest) MakePostRequest(url string, body io.Reader, header http.Header) {

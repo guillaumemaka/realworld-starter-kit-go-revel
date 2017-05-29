@@ -2,7 +2,7 @@ package models
 
 type TagStorer interface {
 	FindTag(*Tag) error
-	FindTags(tags *[]Tag) error
+	FindTags() ([]Tag, error)
 	FindTagOrInit(string) (Tag, error)
 }
 
@@ -14,11 +14,13 @@ type Tag struct {
 }
 
 func (db *DB) FindTag(tag *Tag) error {
-	return db.Where(&tag).Find(&tag).Error
+	return db.Where(&tag).Find(tag).Error
 }
 
-func (db *DB) FindTags(tags *[]Tag) error {
-	return db.Model(&Tag{}).Find(&tags).Error
+func (db *DB) FindTags() ([]Tag, error) {
+	var tags []Tag
+	err := db.Find(&tags).Error
+	return tags, err
 }
 
 func (db *DB) FindTagOrInit(tagName string) (tag Tag, err error) {
